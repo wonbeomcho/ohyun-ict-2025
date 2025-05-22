@@ -6,6 +6,35 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <ul id="board">
+
+    </ul>
+    <form id="post-form">
+        <input type="text" id="write">
+        <button>추가</button>
+    </form>
 </body>
+<script>
+    // 1. 글쓰는 입력창을 클릭한다.
+    // 2. 글을쓴다.
+    // 3. 추가버튼을 누른다.
+
+    // 1. 입력을 받는다.
+    // 2. 게시글 양식이 제출되면
+    document.querySelector("#post-form").addEventListener("submit",(e)=>{
+        e.preventDefault();
+        const postText = document.querySelector("#write").value
+        if (postText !== "") {
+            const post = document.createElement("li");
+            post.innerText = postText;
+            document.querySelector("#board").appendChild(post)
+            document.querySelector("#write").value = ""
+        }
+    })
+
+    // 3. 입력창에 입력된 글을 확인한다.
+    // 4. 입력차엥 입력된 글을 가져온다.
+    // 5. 화면에 보여준다.
+
+</script>
 </html>
