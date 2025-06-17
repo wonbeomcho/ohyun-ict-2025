@@ -1,12 +1,18 @@
 const post_url = "http://crud.tlol.me/wonbeom/post";
+let pagePointer = 0
 const init = async ()=>{
     const res = await fetch(post_url);
     const json = await res.json();
-    console.log(json);
-    json.forEach(post => {
+    const createPost = (post) => {
         const postLi = document.createElement("li");
-        postLi.innerText = post.title;
+        postLi.classList.add("post-container");
         document.querySelector("#board").appendChild(postLi);
+
+        const postTitle = document.createElement("span");
+        postTitle.innerText = post.title;
+        postTitle.classList.add("bold-text");
+        postLi.appendChild(postTitle);
+
         const contentDiv = document.createElement("div");
         contentDiv.innerText = post.content;
         postLi.appendChild(contentDiv);
@@ -17,9 +23,15 @@ const init = async ()=>{
             }else{
                 contentDiv.style.display = 'block';
             }
-        });
-        
-    });
+        }); 
+    }
+    json.slice(0,5).forEach(createPost);
+    pagePointer+=5
+    document.querySelector("#post-more").addEventListener("click",()=>{
+        const prevPointer = pagePointer;
+        pagePointer = pagePointer+5
+        json.slice(prevPointer,pagePointer).forEach(createPost)
+    })
 }
 
 const write = async (data)=>{

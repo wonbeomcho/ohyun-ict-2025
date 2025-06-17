@@ -1,6 +1,23 @@
-#post-form{
+/* #post-form{
     display: none;
 }
-/* #board{
+#board{
     display: none;
 } */
+
+body{
+    background-color: black;
+    color: white;
+}
+
+.bold-text{
+    font-weight: bold;
+}
+
+.post-container{
+    background-color: rgb(39, 37, 37);
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    
+}
